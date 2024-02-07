@@ -207,29 +207,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="canvas.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="main_frame.cpp" />
-    <ClCompile Include="muttable.cpp" />
-    <ClCompile Include="network.cpp" />
-    <ClCompile Include="parsers.cpp" />
-    <ClCompile Include="style.cpp" />
-    <ClCompile Include="style_editor.cpp" />
-    <ClCompile Include="util.cpp" />
-    <ClCompile Include="tree.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="canvas.h" />
-    <ClInclude Include="main_frame.h" />
-    <ClInclude Include="muttable.h" />
-    <ClInclude Include="parsers.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="style.h" />
-    <ClInclude Include="network.h" />
-    <ClInclude Include="matrix.h" />
-    <ClInclude Include="style_editor.h" />
-    <ClInclude Include="tree.h" />
-    <ClInclude Include="util.h" />
+    <ClInclude Include="src\canvas.h" />
+    <ClInclude Include="src\main_frame.h" />
+    <ClInclude Include="src\matrix.h" />
+    <ClInclude Include="src\muttable.h" />
+    <ClInclude Include="src\network.h" />
+    <ClInclude Include="src\parsers.h" />
+    <ClInclude Include="src\resource.h" />
+    <ClInclude Include="src\style.h" />
+    <ClInclude Include="src\style_editor.h" />
+    <ClInclude Include="src\tree.h" />
+    <ClInclude Include="src\util.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
@@ -239,6 +228,18 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\canvas.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\main_frame.cpp" />
+    <ClCompile Include="src\muttable.cpp" />
+    <ClCompile Include="src\network.cpp" />
+    <ClCompile Include="src\parsers.cpp" />
+    <ClCompile Include="src\style.cpp" />
+    <ClCompile Include="src\style_editor.cpp" />
+    <ClCompile Include="src\tree.cpp" />
+    <ClCompile Include="src\util.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
