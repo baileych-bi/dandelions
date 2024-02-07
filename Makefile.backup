@@ -1,0 +1,64 @@
+CXX=clang++
+CXXFLAGS = -Wno-everything -std=c++20 -stdlib=libc++ -pthread $(shell wx-config --cxxflags --unicode=yes --static=no --toolkit=gtk3 --version=3.0 --libs core,base)
+
+# Project files
+SRCDIR = .
+SRCS = canvas.cpp main_frame.cpp network.cpp style.cpp tree.cpp main.cpp muttable.cpp parsers.cpp style_editor.cpp util.cpp
+OBJS = $(SRCS:.cpp=.o)
+DEPS = $(SRCS:.cpp=.d)
+EXE = dandelions
+
+# Debug settings
+DBGDIR = debug
+DBGEXE = $(DBGDIR)/$(EXE)
+DBGOBJS = $(addprefix $(DBGDIR)/, $(OBJS))
+DBGDEPS = $(addprefix $(DBGDIR)/, $(DEPS))
+DBGCXXFLAGS = -g -O0 -DDEBUG
+
+# Release settings
+RELDIR = bin
+RELEXE = $(RELDIR)/$(EXE)
+RELOBJS = $(addprefix $(RELDIR)/, $(OBJS))
+RELDEPS = $(addprefix $(RELDIR)/, $(DEPS))
+RELCXXFLAGS = -O3 -DNDEBUG
+
+.PHONY: all clean debug doc prep release remake
+
+# Default to release build
+all: prep release
+
+# Debug build
+debug: $(DBGEXE)
+
+$(DBGEXE): $(DBGOBJS)
+	$(CXX) $(CXXFLAGS) $(DBGCXXFLAGS) $^ -o $(DBGEXE)
+
+-include $(DBGDEPS)
+
+$(DBGDIR)/%.o: $(SRCDIR)/%.cpp Makefile
+	$(CXX) $(CXXFLAGS) $(DBGCXXFLAGS) -MMD -MP -c $< -o $@
+
+# Release build
+release: $(RELEXE)
+
+$(RELEXE): $(RELOBJS)
+	$(CXX) $(CXXFLAGS) $(RELCXXFLAGS) $^ -o $(RELEXE)
+
+-include $(RELDEPS)
+
+$(RELDIR)/%.o: $(SRCDIR)/%.cpp Makefile
+	$(CXX) $(CXXFLAGS) $(RELCXXFLAGS) -MMD -MP -c $< -o $@
+
+# Misc rules
+doc:
+	@mkdir -p doc
+	doxygen Doxyfile
+
+prep:
+	@mkdir -p $(DBGDIR) $(RELDIR)
+
+remake: clean all
+
+clean:
+	rm -rf doc/html
+	rm -f $(DBGEXE) $(DBGOBJS) $(DBGDEPS) $(RELEXE) $(RELOBJS) $(RELDEPS)
