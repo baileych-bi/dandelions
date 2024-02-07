@@ -96,12 +96,12 @@ Matrix<T>::eye(size_t n) {
 template<typename T>
 Matrix<T>
 Matrix<T>::transpose() const {
-    Matrix<T> T(cols(), rows());
+    Matrix<T> M(cols(), rows());
     for (size_t i = 0; i != rows(); ++i)
     for (size_t j = 0; j != cols(); ++j) {
-        T[{j, i}] = (*this)[{i, j}];
+        M[{j, i}] = (*this)[{i, j}];
     }
-    return T;
+    return M;
 }
 
 template<typename T>

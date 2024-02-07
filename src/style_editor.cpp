@@ -21,10 +21,13 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include <wx/propgrid/advprops.h>
+#include <wx/event.h>
 #include <wx/scrolwin.h>
 #include <wx/stattext.h>
 #include <wx/valnum.h>
+#include <wx/window.h>
+#include <wx/propgrid/propgrid.h>
+#include <wx/propgrid/advprops.h>
 
 #include "style_editor.h"
 #include "util.h"
@@ -118,12 +121,20 @@ StyleEditor::NotifyNumberCentroidsChanged() {
 
 void
 StyleEditor::SetDefaults() {
-    propgrid_->GetProperty("Root")->SetValue(wxVariant(wxColor("#000000")));
-    propgrid_->GetProperty("Default")->SetValue(wxVariant(wxColor("#ffffff")));
+    wxColor color("#000000");
+    wxVariant variant;
+
+    propgrid_->GetProperty("Root")->SetValue(variant << color);
+
+
+    color = "#ffffff";
+    propgrid_->GetProperty("Default")->SetValue(variant << color);
 
     for (size_t i = 0; i != PALETTE.size(); ++i) {
         wxString name = wxString::Format("Centroid %d", i + 1);
-        propgrid_->GetProperty(name)->SetValue(wxVariant(wxColor(PALETTE[i])));
+
+        color = wxColor(PALETTE[i]);
+        propgrid_->GetProperty(name)->SetValue(variant << color);
     }
 }
 

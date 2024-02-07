@@ -117,7 +117,7 @@ all: prep release
 debug: $(DBGEXE)
 
 $(DBGEXE): $(DBGOBJS)
-	$(CXX) $(LDFLAGS) $^ -o $(DBGEXE) `$(WX_CONFIG) $(WX_CONFIG_FLAGS) --libs core,base`
+	$(CXX) $(LDFLAGS) $^ -o $(DBGEXE) `$(WX_CONFIG) $(WX_CONFIG_FLAGS) --libs core,base,propgrid`
 
 -include $(DBGDEPS)
 
@@ -128,7 +128,7 @@ $(DBGDIR)/%.o: $(SRCDIR)/%.cpp Makefile
 release: $(RELEXE)
 
 $(RELEXE): $(RELOBJS)
-	$(CXX) $(LDFLAGS) $^ -o $(RELEXE) `$(WX_CONFIG) $(WX_CONFIG_FLAGS) --libs core,base`
+	$(CXX) $(LDFLAGS) $^ -o $(RELEXE) `$(WX_CONFIG) $(WX_CONFIG_FLAGS) --libs core,base,propgrid`
 
 -include $(RELDEPS)
 
