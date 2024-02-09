@@ -224,7 +224,7 @@
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="README.txt" />
+    <Text Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\canvas.cpp" />

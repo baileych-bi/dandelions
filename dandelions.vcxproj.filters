@@ -58,7 +58,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="README.txt">
+    <Text Include="README.md">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
