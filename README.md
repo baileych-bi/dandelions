@@ -1,13 +1,13 @@
 # Dandelions: B Cell Receptor Sequence Clustering and Lineage Graph Generation
 
-# Getting Started
+## Getting Started
 
 Dandelions is developed and tested on Microsoft Windows 11 and WSL2 with a
 cross-platform UI built from wxWdigets. Some differences in graphical output
 will be present due to differences in the GDI and GTK2 backends of wxWidgets.
 In general, the Windows version will give better results.
 
-# Prerequisites
+## Prerequisites
 
 The Windows version can be built with recent versions (>=17) of Visual Studio
 Community Edition. Compilation on Linux requires a C++ compiler and standard 
@@ -26,7 +26,7 @@ the Windows version. There is no Intel-specific SIMD code so in theory
 Dandelions should run on MacOS if Homebrew can provide modern clang++ and a 
 wxWidgets package but I have not tested it.
 
-# Installing
+## Installing
 
 For a Windows install, we recommend simply downloading the binary installer
 in the installers folder of the repository (dandelions_setup.msi). For the 
@@ -46,11 +46,11 @@ $dandelions
 installed.
 
 
-# Author
+## Author
 
 Charles C Bailey
 
-# Acknowledgements
+## Acknowledgements
 
 Dandelions makes uses the excellent cross-platform GUI toolkit wxWidgets
 (https://wiki.wxwidgets.org/) for its UI. The contrasting palette of
