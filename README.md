@@ -45,6 +45,15 @@ $dandelions
 ..should do the trick if the correct compilers and dependencies are
 installed.
 
+## Usage
+
+Dandelions reads .fasta files containing DNA sequences as its primary input
+and assumes that the first sequence in the .fasta file is the root of the
+phylogenetic tree. It will also consume .csv files produced by dsa
+(https://github.com/baileych-bi/dsa-win64) provided that dsa was run with
+the --dna-template=... and --codons=horizontal options. In this case it
+uses the dna template sequence as the root. Sample data input data files
+are available in the 'example' folder.
 
 ## Author
 
