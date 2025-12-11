@@ -193,6 +193,27 @@ hamming_distance(std::string_view a, std::string_view b) {
     return d;
 }
 
+uint32_t
+levenstein_distance(std::string_view a, std::string_view b) {
+    thread_local std::vector<uint32_t> upper, lower;
+
+    if (a.empty() || b.empty())
+        return std::max(uint32_t(a.size()), uint32_t(b.size()));
+
+    const size_t rows = a.size(), cols = b.size();
+
+    upper.clear(); upper.resize(cols + 1, 0);
+    lower.clear(); lower.resize(cols + 1, 0);
+
+    for (size_t i=0; i < rows; ++i) {
+        std::swap(lower, upper);
+        for (size_t j=1; j <= cols; ++j)
+            upper[j] = lower[j - 1] + (a[i] == b[j - 1]);
+    }
+
+    return upper[cols];
+}
+
 Matrix<uint32_t>
 make_distance_matrix(const std::vector<std::string> &sequences) {
     Matrix<uint32_t> dism(sequences.size(), sequences.size(), 0);

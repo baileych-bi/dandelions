@@ -35,8 +35,9 @@ parse_dsa(std::istream &ifs) {
     std::string ancestor;
     std::string line;
 
-    size_t line_no = 1;
-    for (; std::getline(ifs, line); ++line_no) {
+    size_t line_no = 0;
+    while (std::getline(ifs, line) && ++line_no) {
+                             //"#dna template sequence"
         if (line.starts_with("#dna template sequence")) {
             auto tokens = split(line, "\t");
             ancestor = rstrip(tokens[1]);
@@ -74,6 +75,8 @@ parse_dsa(std::istream &ifs) {
         std::tie(line, filtered) = make_valid_dna(stripped);
         if (filtered)
             throw std::runtime_error("Sequence on line " + std::to_string(line_no) + " contained invalid (i.e., non-ACGT) characters");
+        if (line.empty())
+            throw std::runtime_error("empty sequence on line where DNA was expected " + std::to_string(line_no));
         if (line.size() != ancestor.size()) continue;
         sequences.insert(std::move(line));
     }

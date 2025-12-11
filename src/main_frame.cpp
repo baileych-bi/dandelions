@@ -738,7 +738,8 @@ MainFrame::OnExportTable(wxCommandEvent &evt) {
     for (auto &[_, n] : *(canvas_->GetNetwork())) {
         if (n.centroid_id != Node::NA) centroids.push_back(&n);
     }
-    std::sort(centroids.begin(), centroids.end(), [](Node *a, Node *b)->bool { return a->centroid_id < b->centroid_id; });
+    std::sort(centroids.begin(), centroids.end(),
+        [](Node *a, Node *b)->bool { return a->centroid_id < b->centroid_id; });
 
     std::vector<std::string> seqs;
     std::vector<wxColor> colors;
@@ -793,11 +794,12 @@ MainFrame::OnExportSequences(wxCommandEvent &evt) {
     for (auto &[_, n] : *(canvas_->GetNetwork())) {
         if (n.centroid_id != Node::NA) centroids.push_back(&n);
     }
-    std::sort(centroids.begin(), centroids.end(), [](Node *a, Node *b)->bool { return a->centroid_id < b->centroid_id; });
+    std::sort(centroids.begin(), centroids.end(),
+        [](Node *a, Node *b)->bool { return a->centroid_id < b->centroid_id; });
 
     std::ofstream ofs(path);
     for (Node *c : centroids) {
-        ofs << ">Centroid_" << c->centroid_id << std::endl;
+        ofs << ">Centroid_" << (c->centroid_id+1) << std::endl;
         for (const auto &line : wrap(c->aas(), 80)) ofs << line << std::endl;
     }
 

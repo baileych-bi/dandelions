@@ -155,7 +155,8 @@ split(std::string_view s, std::string_view delim) {
 
 std::string_view
 rstrip(std::string_view s) {
-    while (std::isspace(s.back())) s.remove_suffix(1);
+    while (s.size() > 0 && std::isspace(s.back()))
+        s.remove_suffix(1);
     return s;
 }
 

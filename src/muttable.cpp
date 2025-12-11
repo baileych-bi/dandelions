@@ -119,6 +119,7 @@ MutTable::to_html(const std::vector<wxColor> &colors) const {
     //residue rows
     for (size_t j=0; j<res_.size(); ++j) {
         ss << "<tr style=\"color:#" << std::setfill('0') << std::setw(6) << std::hex << std::right << to_int(colors[j]) << "\"><th>"; //std::format("{:06X}", to_int(colors[j])) << "\"><th>";
+        ss << std::dec;
         if (j != 0) ss << j;
         ss << "</th>";
         for (char c : res_[j]) ss << "<td>" << c << "</td>";
